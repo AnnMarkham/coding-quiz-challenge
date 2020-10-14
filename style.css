@@ -1,0 +1,27 @@
+
+
+body{
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid black;
+  text-align: center;
+  margin: 15%;
+}
+
+.btn{
+  outline:none;
+  border: none;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #400080;
+  font-size: 2.2 rem;
+  border-radius: 12px;
+  position: relative;
+  top: -3px;
+  color: white;
+}
+
+.btn:hover {
+    background: #790ae0
+}
