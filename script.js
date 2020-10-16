@@ -1,13 +1,9 @@
-
-
-var quizBtn = document.getElementById("start");
-// var time = document.getElementById("time");
+var startButton = document.getElementById("start");
+var time = document.getElementById("time");
 var boxEL = document.querySelector(".box")
 var questionEl = document.getElementById("question")
 // var choiceBtn;
 var answersList;
-
-console.log(quizBtn, typeof quizBtn, "quizBtn")
 
 
 var questionArray = [
@@ -16,7 +12,7 @@ var questionArray = [
   { question: " The condition in an if/else statement is enclosed with _______", choices: ["1. Quotation Marks", "2. Curyly Brackets", "P3. arentheses", "4. Square Brackets"], answer: "3" },
   { question: "Commonly used data types do not include:", choices: ["Strings", "Booleans", "Alerts", "Numbers"], answer: "3" }
 ]
-console.log(questionArray);
+
 
 //start Quiz
 function startQuiz() {
@@ -24,7 +20,6 @@ function startQuiz() {
   //set the timer
   var timeRemaining = 75;
   time.innerText = timeRemaining;
-
 
   //count-down
   var countDown = setInterval(function () {
@@ -38,50 +33,48 @@ function startQuiz() {
 
   }, 1000);
 
+  startButton.remove();
+
+  //pull answers from questionsArray and create list to display
+
+  answerList = document.createElement("ul");
+  answerList.classList.add("answer-list");
+  boxEL.appendChild(answerList);
+
+  // function to handle clicking on answer choice
+  answerList.addEventListener("click", function (event) {
+    var clickedElement = event.target;
+    if (clickedElement.matches("button")) {
+      var chosenAnswer = clickedElement.getAttribute("choice-value");
+      // Check to see if chosenAnswer matches the answer in line with the queston in the questiosn array
+      if (chosenAnswer === questionArray[currentQuestion].answer) {
+        displayResult("Correct");
+      }
+      else {
+        //wrong
+        displayResult("Wrong");
+        // Reduce 10 seconds and display new time
+        timeRemaining -= 10;
+        time.innerText = timeRemaining;
+      }
+      // Move to next question
+      currentQuestion++;
+      // If out of questions stop timer and call endQuiz
+      if (currentQuestion === questionArray.length) {
+        clearInterval(countDown);
+        allDone(timeRemaining);
+      }
+      else {
+        // Display the next question
+        displayQuiz(currentQuestion);
+      }
+    }
+  });
+
+  //Start from question 1
+  var currentQuestion = 0;
+  displayQuiz(currentQuestion);
 }
-quizBtn.remove();
-
-//pull answers from questionsArray and create list to display
-
-answersList = document.createElement("ol");
-answersList.classList.add("answers-list");
-boxEL.appendChild(answersList);
-
-// function to handle clicking on answer choice
-var answerChoiceHandler = function (event) {
-  var clickedChoice = event.target;
-  if (clickedChoice.matches("button")) {
-    console.log("button clicked");
-    var chosenAnswer = clickedChoice.getAttribute("option-value");
-    console.log(chosenAnswer);
-    // Check to see if chosenAnswer matches the answer in line with the queston in the questiosn array
-    if (chosenAnswer === questionArray[currentQuestion].answer) {
-      console.log("correct");
-      displayResult("Correct");
-    }
-    else {
-      console.log("wrong")
-      displayResult("Wrong");
-      // Reduce 10 seconds and display new time
-      timeRemaining -= 10;
-      time.innerText = timeRemaining;
-    }
-    // Move to next question
-    currentQuestion++;
-    // If out of questions stop timer and call endQuiz
-    if (currentQuestion === quizQuestions.length) {
-      clearInterval(countDown);
-      allDone(timeRemaining);
-    }
-    else {
-      // Display the next question
-      displayQuiz(currentQuestion);
-    }
-  }
-};
-//Start from question 1
-varcurrentQuestion = 0
-displayQuiz(currentQuestion);
 
 // //display result
 function displayResult(result) {
@@ -103,12 +96,14 @@ function displayQuiz(questionIndex) {
   answerList.innerHTML = "";
 
   //display all options
-  for (var i = 0, questionsArray[questionIndex].choices.length; i++) {
-    var liEl = document.createElement("button");
+  for (var i = 0; i < questionArray[questionIndex].choices.length; i++) {
+    //create
+    var liEl = document.createElement("li");
+    var buttonEl = document.createElement("button");
     //build
-    buttonEl.setAttrubute("choice-value"), i);
+    buttonEl.setAttribute("choices-value", i);
     buttonEl.classList.add("button");
-    buttonEl.innerText = (i + 1) + ". " + questionsArray[questionIndex].choices[i];
+    buttonEl.innerText = (i + 1) + ". " + questionArray[questionIndex].choices[i];
     //place
     liEl.appendChild(buttonEl);
     answerList.appendChild(liEl);
@@ -138,31 +133,30 @@ function allDone(score) {
   doneBoxForm.appendChild(submitButton);
 
   //when the form is submitted 
-  var submitButtonHandler = function (event) {
+  doneBoxForm.addEventListener("submit", function (event) {
     event.preventDefault();
     //get user initials
     var userInitials = initialsInput.value;
-    if (usersInitials) {
+    if (userInitials) {
       //turn all into an object
-      var scoreObj = { initials: unserinitials, score: score };
+      var scoreObj = { initials: userInitials, score: score };
 
-      //store users initials to local storage
-      //check old high score
-      var highScoreList = Json.parse(localStorage.getItem("highScores"));
-      if (highScoresList) {
-        highScores.push(scoreObj);
+      // Store users initial to local storage   
+      // Check old highscores     
+      var highscoresList = JSON.parse(localStorage.getItem("code-quiz-highscores"));
+      // console.log(highscoresList);
+      if (highscoresList) {
+        highscoresList.push(scoreObj);
       }
-      else { highScoreList = [scoreObj]; }
+      else {
+        highscoresList = [scoreObj];
+      }
+      // console.log(highscoresList);
+      localStorage.setItem("code-quiz-highscores", JSON.stringify(highscoresList));
+      // Redirect to highscores page  
+      location.href = "highscore.html";
     }
-    localStorage.setItem("highScores", JSON.stringify(highScoresList));
-    //redirect to highscores page
-    location.href = "highscore.html";
-
-  }
+  });
 }
 
-
-;
-answersList.addEventListener(click, "answerChoiceHandler")
-doneBoxForm.addEventListenter("click", submitButtonHandler);
-quizBtn.addEventListener("click", startQuiz);
+startButton.addEventListener("click", startQuiz);

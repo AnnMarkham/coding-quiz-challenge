@@ -1,26 +1,28 @@
-var highScoresListEl = document.getElementById("highScoresList");
-var clearButton = document.getElementsById("clearHighScore");
+var highscoresListEl = document.getElementById("highscores-list");
+var clearButton = document.getElementById("clear-highscores");
 
-//get high scores from local storage
+// Get highscores from local storage
+var highscoresList = JSON.parse(localStorage.getItem("code-quiz-highscores"));
+// console.log(highscoresList);
 
-var highScoresList = JSON.parse(localStorage.getItem("highScores"));
-
-if (highScoresList) {
-
-  // sort the scores from hightest to lowest
+if (highscoresList) {
+  // Sort the highscores from highest to lowest scores
   highscoresList.sort(function (a, b) { return b.score - a.score }); // from https://www.w3schools.com/js/js_array_sort.asp
 
-  highScoresList.forEach(function (highscore, index) {
+  highscoresList.forEach(function (highscore, index) {
     var liEl = document.createElement("li");
-    highScoresListEl.appendChild(liEl);
+    liEl.innerText = highscore.initials + " - " + highscore.score;
+    highscoresListEl.appendChild(liEl);
   });
 }
 
-// Clear Highscore Button
-clearButton.addEvenListener("click", function (event) {
+
+// When clear highscores button is clicked
+clearButton.addEventListener("click", function (event) {
+  // Prevent default if any
   event.preventDefault();
-  // delete high scores from storage
-  localStorage.removeItem("highScores");
-  //delete high scores from screen
-  highScoresListEl.innerHTML = "";
+  // Delete the highscores list from local storage
+  localStorage.removeItem("code-quiz-highscores");
+  // Delete the highscores on the screen
+  highscoresListEl.innerHTML = "";
 })
