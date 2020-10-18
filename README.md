@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # coding-quiz-challenge
 ``
 
@@ -33,6 +33,6 @@ At any time during the quiz, the user can click on the highscores link to view t
 
 
 
-[Link](url) and ![Image](src)
+![Image]/assets/04-web-apis-homework-demo.gif
 
 
