@@ -10,7 +10,7 @@ if (highscoresList) {
   highscoresList.sort(function (a, b) { return b.score - a.score }); // from https://www.w3schools.com/js/js_array_sort.asp
 
   highscoresList.forEach(function (highscore, index) {
-    var liEl = document.createElement("li");
+    var liEl = document.createElement("li")
     liEl.innerText = highscore.initials + " - " + highscore.score;
     highscoresListEl.appendChild(liEl);
   });

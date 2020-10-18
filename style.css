@@ -1,7 +1,7 @@
 
-
 body{
   box-sizing: border-box;
+  display: block;
   padding: 15px;
   border-radius: 12px;
   border: 2px solid black;
@@ -9,7 +9,8 @@ body{
   margin: 15%;
 }
 
-.btn{
+
+.button{
   outline:none;
   border: none;
   display: inline-block;
@@ -20,9 +21,41 @@ body{
   position: relative;
   top: -3px;
   color: white;
+ }
+
+.button:hover {
+    background: #790ae0;
 }
 
-.btn:hover {
-    background: #790ae0
+header a{
+  float: left;
 }
+.timer{
+ float: right;
+ white-space: pre;
+}
+
+
+ul{
+  text-align: center;
+  display: list-item;
+  list-style-type: none;
+  }
+
+
+#highscores-list{
+text-align: left;
+  list-style-position: inside;
+  display: block;
+  margin-left: 40%;
+ margin-right: 40%;
+  font-size: 18px;
+}
+  
+ 
+  
+
+
+  
+
 

@@ -7,9 +7,9 @@ var answersList;
 
 
 var questionArray = [
-  { question: "A very useful tool used during development and debugging for printing content to the debugger is:", choices: ["1.Javascript", "2.Terminal/Bash", "3.for loops", "4. console.log"], answer: "4" },
-  { question: "Arrays in JavaScript can be used to store ", choices: ["1.Numbers & Strings", "2. Other Arrays", "3. Booleans", "4. all of the above"], answer: "4" },
-  { question: " The condition in an if/else statement is enclosed with _______", choices: ["1. Quotation Marks", "2. Curyly Brackets", "P3. arentheses", "4. Square Brackets"], answer: "3" },
+  { question: "A very useful tool used during development and debugging for printing content to the debugger is:", choices: ["Javascript", "Terminal/Bash", "for loops", "console.log"], answer: "4" },
+  { question: "Arrays in JavaScript can be used to store ", choices: ["Numbers & Strings", "Other Arrays", "Booleans", "all of the above"], answer: "4" },
+  { question: " The condition in an if/else statement is enclosed with _______", choices: ["Quotation Marks", "Curyly Brackets", "Parentheses", "Square Brackets"], answer: "3" },
   { question: "Commonly used data types do not include:", choices: ["Strings", "Booleans", "Alerts", "Numbers"], answer: "3" }
 ]
 
@@ -42,10 +42,11 @@ function startQuiz() {
   boxEL.appendChild(answerList);
 
   // function to handle clicking on answer choice
+
   answerList.addEventListener("click", function (event) {
     var clickedElement = event.target;
     if (clickedElement.matches("button")) {
-      var chosenAnswer = clickedElement.getAttribute("choice-value");
+      var chosenAnswer = clickedElement.getAttribute("choices-value");
       // Check to see if chosenAnswer matches the answer in line with the queston in the questiosn array
       if (chosenAnswer === questionArray[currentQuestion].answer) {
         displayResult("Correct");
