@@ -36,7 +36,6 @@ function startQuiz() {
   startButton.remove();
 
   //pull answers from questionsArray and create list to display
-
   answerList = document.createElement("ul");
   answerList.classList.add("answer-list");
   boxEL.appendChild(answerList);
@@ -51,6 +50,7 @@ function startQuiz() {
       if (chosenAnswer === questionArray[currentQuestion].answer) {
         displayResult("Correct");
       }
+
       else {
         //wrong
         displayResult("Wrong");
@@ -131,6 +131,7 @@ function allDone(score) {
   // create submit button
   var submitButton = document.createElement("button");
   submitButton.innerText = "Submit";
+  submitButton.classList.add("button");
   doneBoxForm.appendChild(submitButton);
 
   //when the form is submitted 

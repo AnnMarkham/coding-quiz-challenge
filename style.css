@@ -1,57 +1,107 @@
 
+*{box-sizing: border-box;
+}
+
+.box{
+  text-align: center;
+}
+
+header{
+  font-size: 1.25rem;
+}
+
+header a{
+  float: left;
+}
+
+.timer{
+ float: right;
+ white-space: pre;
+}
+
 body{
   box-sizing: border-box;
   display: block;
   padding: 15px;
   border-radius: 12px;
   border: 2px solid black;
-  text-align: center;
   margin: 15%;
 }
 
+#question{
+  font-size: 1.5rem;
+}
 
 .button{
   outline:none;
-  border: none;
+  border: 5px solid white;
   display: inline-block;
   padding: 10px 15px;
   background-color: #400080;
-  font-size: 2.2 rem;
   border-radius: 12px;
   position: relative;
   top: -3px;
   color: white;
- }
+  text-align: center;
+  margin-bottom: 20 px;
+  font-size: 1.25rem;
+}
 
 .button:hover {
     background: #790ae0;
 }
-
-header a{
-  float: left;
-}
-.timer{
- float: right;
- white-space: pre;
-}
-
-
+ 
 ul{
-  text-align: center;
+  list-style-type:none;
   display: list-item;
-  list-style-type: none;
-  }
+  padding: 2px;
+}
 
+.box.answer-list{
+  display: flex;
+  list-style-type: none;
+  width: 50%;
+  flex-direction: column;
+  margin-left: 40%;
+  margin-right: 40%;
+  justify-content: flex-start;
+  margin-bottom:20px;
+  font-size: 1.25rem;
+  }
+  
+footer{
+  font-size: 1.5rem;
+  color: darkblue;
+}
 
 #highscores-list{
-text-align: left;
+  text-align: left;
   list-style-position: inside;
   display: block;
+  font-size: 1.5rem;
   margin-left: 40%;
- margin-right: 40%;
-  font-size: 18px;
+  margin-right: 40%;
+
+   }
+
+ #clear-highScores{
+   font-size: 1.5rem
+ }
+#goBack{
+  font-size: 1.25rem;
+  }
+
+  main.container{
+    text-align: center;
+  }
+
+  main.container a{
+    text-decoration: none;
+  }
+label{
+  font-size: 1.5rem;
 }
-  
+
  
   
 
