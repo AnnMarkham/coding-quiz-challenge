@@ -25,13 +25,12 @@ The user can then decide whether to clear high scores or go back to the beginnin
 At any time during the quiz, the user can click on the highscores link to view the most recently submitted high scores list.  
 ```
 
-
-
 * The URL of the functional, deployed application.
+https://github.com/AnnMarkham/coding-quiz-challenge
 
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
-
+https://annmarkham.github.io/coding-quiz-challenge/
 
 ![Image]/assets/04-web-apis-homework-demo.gif
 
